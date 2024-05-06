@@ -6,5 +6,6 @@ def send(x):
 	time.sleep(0.05) 
 	data = arduino.readline() 
 	print(data)
+	#2
 
 
