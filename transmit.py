@@ -7,3 +7,4 @@ def send(x):
 	data = arduino.readline() 
 	print(data)
 
+

@@ -7,9 +7,11 @@ import numpy as np
 import cv2 as cv
 
 def commandMode():
-    print('Command mode active.')
+    print('Command mode active. Use arrow keys to control.')
     while True:
-        transmit(input())
+        transmit.send(input('Enter command: '))
+
+
 
 
 def detect_yellow_line(frame):
@@ -32,9 +34,10 @@ def detect_yellow_line(frame):
     return None, None, frame
 
 def follow_yellow_line(frame, transmit):
-    MOVE_LEFT = 'D_200__'
-    MOVE_FORWARD = 'W_100_R'
-    MOVE_RIGHT = 'D_200_R'
+    MOVE_LEFT = 'LT200__'
+    MOVE_FORWARD = 'FW_100_'
+    MOVE_BACKWARD = 'FW_100_'
+    MOVE_RIGHT = 'RT200__'
 
     # Detect the yellow line and its centroid
     cx, cy, processed_frame = detect_yellow_line(frame)
@@ -98,6 +101,14 @@ def detect_yellow(frame):
 
     return detected_sections, frame
 
+
+
+if __name__ == '__main__':
+    user_input = input('Enter Y if you want to enter command mode (Y/N): ')
+    if user_input.upper() == 'Y':
+        commandMode()
+    else:
+        print('Autonomous mode active.')
 
 
 x, y, w, h = 220, 140, 200, 200
